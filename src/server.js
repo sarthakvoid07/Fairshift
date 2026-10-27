@@ -8,7 +8,7 @@ import { HttpError, routes } from './routes.js';
 import { createStore } from './store.js';
 import { createLoginLimiter, readSession } from './security.js';
 
-const PUBLIC_DIR = fileURLToPath(new URL('../public/', import.meta.url));
+const PUBLIC_DIR = join(process.cwd(), 'public') + sep;
 const MAX_BODY_BYTES = 16 * 1024;
 
 const MIME = {
@@ -149,7 +149,8 @@ function send(res, status, data) {
   res.end(JSON.stringify(data));
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+// Vercel imports this module through api/index.js and must not open a port.
+if (!process.env.VERCEL && process.argv[1] === fileURLToPath(import.meta.url)) {
   const port = Number(process.env.PORT) || 8080;
   createApp().listen(port, () => console.log(`FairShift listening on :${port}`));
 }
