@@ -1,0 +1,10 @@
+{
+  "name": "FairShift",
+  "short_name": "FairShift",
+  "description": "Fair pay, safe work and an honest voice for shift workers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F8F5",
+  "theme_color": "#1B2A3A",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

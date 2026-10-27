@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1B2A3A">
+  <title>FairShift for workers</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/css/app.css">
+  <script type="module" src="/js/worker.js"></script>
+</head>
+<body class="worker">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <a class="brand-mini" href="#"><img src="/icon.svg" alt="" width="28" height="28"> FairShift</a>
+    <label class="lang-mini">
+      <span class="sr-only" data-i18n="language">Language</span>
+      <select id="lang"></select>
+    </label>
+    <button id="sign-out" class="link" type="button" data-i18n="sign_out">Sign out</button>
+  </header>
+  <main id="main" class="worker-main" aria-live="off"></main>
+  <dialog id="scanner" aria-labelledby="scan-title">
+    <p id="scan-title" data-i18n="point_camera">Point the camera at the site QR code.</p>
+    <video id="camera" playsinline muted></video>
+    <button id="scan-cancel" class="btn secondary wide" type="button" data-i18n="cancel">Cancel</button>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1B2A3A">
+  <meta name="description" content="FairShift: fair pay, safe work and an honest voice for shift workers.">
+  <title>FairShift</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/css/app.css">
+  <script type="module" src="/js/login.js"></script>
+</head>
+<body class="login">
+  <a class="skip" href="#main">Skip to content</a>
+  <main id="main" class="login-wrap">
+    <header class="brand">
+      <img src="/icon.svg" alt="" width="72" height="72">
+      <h1>FairShift</h1>
+      <p class="tagline" data-i18n="tagline">Fair pay. Safe work. Your voice.</p>
+    </header>
+
+    <label class="lang-field">
+      <span data-i18n="language">Language</span>
+      <select id="lang"></select>
+    </label>
+
+    <fieldset class="segmented">
+      <legend class="sr-only">Who are you?</legend>
+      <input type="radio" name="role" id="role-worker" value="worker" checked>
+      <label for="role-worker" data-i18n="login_worker">I am a worker</label>
+      <input type="radio" name="role" id="role-admin" value="admin">
+      <label for="role-admin" data-i18n="login_employer">I am an employer</label>
+    </fieldset>
+
+    <form id="worker-form" class="stack" novalidate>
+      <label for="phone" data-i18n="phone">Mobile number</label>
+      <input id="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="15" required>
+      <label for="pin" data-i18n="pin">4-digit PIN</label>
+      <input id="pin" type="password" inputmode="numeric" maxlength="4" autocomplete="current-password" required>
+      <button class="btn primary wide" data-i18n="sign_in">Sign in</button>
+    </form>
+
+    <form id="admin-form" class="stack" novalidate hidden>
+      <label for="email" data-i18n="email">Work email</label>
+      <input id="email" type="email" autocomplete="username" maxlength="120" required>
+      <label for="password" data-i18n="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" maxlength="100" required>
+      <button class="btn primary wide" data-i18n="sign_in">Sign in</button>
+    </form>
+
+    <p id="login-error" class="error" role="alert"></p>
+
+    <section class="demo" aria-labelledby="demo-title">
+      <h2 id="demo-title" data-i18n="try_demo">Try a demo account</h2>
+      <p class="muted small">Workers: PIN 1234. Employers: password demo1234.</p>
+      <div class="demo-grid">
+        <button type="button" class="demo-btn" data-kind="worker" data-id="9000000001"><span aria-hidden="true">🏗️</span> <span data-i18n="demo_construction">Construction worker</span></button>
+        <button type="button" class="demo-btn" data-kind="worker" data-id="9000000011"><span aria-hidden="true">🏥</span> <span data-i18n="demo_hospital">Hospital worker</span></button>
+        <button type="button" class="demo-btn" data-kind="worker" data-id="9000000023"><span aria-hidden="true">🎓</span> <span data-i18n="demo_campus">College staff</span></button>
+        <button type="button" class="demo-btn employer" data-kind="admin" data-id="admin@skyline.demo"><span aria-hidden="true">📊</span> <span data-i18n="demo_admin_construction">Construction site office</span></button>
+        <button type="button" class="demo-btn employer" data-kind="admin" data-id="admin@citycare.demo"><span aria-hidden="true">📊</span> <span data-i18n="demo_admin_hospital">Hospital HR desk</span></button>
+      </div>
+    </section>
+  </main>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

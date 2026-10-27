@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1B2A3A">
+  <title>FairShift for employers</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/app.css">
+  <script type="module" src="/js/admin.js"></script>
+</head>
+<body class="admin">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="admin-top">
+    <span class="brand-mini"><img src="/icon.svg" alt="" width="28" height="28"> FairShift</span>
+    <div class="org-name">
+      <strong id="org-name"></strong>
+      <span id="org-meta" class="muted"></span>
+    </div>
+    <span id="ai-badge" class="ai-badge"></span>
+    <button id="sign-out" class="btn secondary small" type="button">Sign out</button>
+  </header>
+
+  <main id="main" class="admin-main">
+    <h1 class="sr-only">Employer dashboard</h1>
+    <section id="kpis" class="kpis" aria-label="Today at a glance"></section>
+
+    <div class="admin-grid">
+      <section class="panel" aria-labelledby="issues-title">
+        <div class="panel-head">
+          <h2 id="issues-title">Safety and pay reports</h2>
+          <span id="issues-count" class="muted"></span>
+        </div>
+        <ul id="issues" class="issues"></ul>
+      </section>
+
+      <div class="side">
+        <section class="panel qr-panel" aria-labelledby="qr-title">
+          <h2 id="qr-title">Site check-in</h2>
+          <p class="muted small">Show this at the gate. It changes every minute, so a forwarded photo stops working.</p>
+          <img id="qr-img" alt="Check-in QR code for this site" width="220" height="220">
+          <p class="qr-code"><span class="muted small">Code for phones without a camera</span><strong id="qr-code"></strong></p>
+          <p id="qr-timer" class="muted small" aria-live="off"></p>
+        </section>
+
+        <section class="panel" aria-labelledby="brief-title">
+          <h2 id="brief-title">This week's actions</h2>
+          <button id="brief-btn" class="btn primary wide" type="button">Write my weekly brief</button>
+          <ol id="brief" class="brief" aria-live="polite"></ol>
+          <p id="brief-source" class="muted small"></p>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="workers-title">
+      <div class="panel-head">
+        <h2 id="workers-title">Workforce</h2>
+        <span class="muted small">Sorted by risk of leaving. Every score shows its reasons.</span>
+      </div>
+      <div class="table-wrap">
+        <table class="workers">
+          <thead>
+            <tr>
+              <th scope="col">Worker</th>
+              <th scope="col">Last 7 days</th>
+              <th scope="col">Fatigue</th>
+              <th scope="col">Risk of leaving</th>
+              <th scope="col">Skills</th>
+            </tr>
+          </thead>
+          <tbody id="workers"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="admin-grid even">
+      <section class="panel" aria-labelledby="att-title">
+        <h2 id="att-title">Attendance, last 14 days</h2>
+        <ol id="attendance" class="bars"></ol>
+      </section>
+      <section class="panel" aria-labelledby="fb-title">
+        <h2 id="fb-title">Anonymous feedback, last 4 weeks</h2>
+        <div id="feedback"></div>
+      </section>
+    </div>
+  </main>
+
+  <dialog id="issue-dialog" aria-labelledby="issue-dialog-title">
+    <form method="dialog" class="stack" id="issue-form">
+      <h2 id="issue-dialog-title"></h2>
+      <p id="issue-dialog-text" class="muted"></p>
+      <label for="issue-status">New status</label>
+      <select id="issue-status">
+        <option value="acknowledged">Seen, working on it</option>
+        <option value="resolved">Fixed</option>
+      </select>
+      <label for="issue-note">Note for the worker</label>
+      <textarea id="issue-note" rows="3" maxlength="300"></textarea>
+      <p class="muted small">The worker sees this note in their own language.</p>
+      <div class="dialog-actions">
+        <button class="btn secondary" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn primary" value="save">Save update</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="skill-dialog" aria-labelledby="skill-dialog-title">
+    <form method="dialog" class="stack" id="skill-form">
+      <h2 id="skill-dialog-title"></h2>
+      <label for="skill-name">Skill or training completed</label>
+      <input id="skill-name" maxlength="80" required>
+      <p class="muted small">It is added to the worker's portable skill passport, verified by your organisation.</p>
+      <div class="dialog-actions">
+        <button class="btn secondary" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn primary" value="save">Add skill</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
